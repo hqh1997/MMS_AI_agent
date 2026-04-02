@@ -1,0 +1,39 @@
+{
+  "exp": {
+    "name": "BLA_rnet_UC_train",
+    "gpu_ids": [0],
+    "exp_dir": "experiments/",
+    "max_to_keep_ckpt": 5,
+    "save_val_pred": false,
+    "pnet_exp_name": "UC_init_train",
+    "device": "cuda"  
+  },
+  "data": {
+    "data_dir": "./",
+    "batch_size": 1,
+    "num_workers": 6
+  },
+  
+  "model": {
+    "c_in": 3,
+    "c_blk": 32,
+    "n_classes": 2,
+    "init_init_weights": true,
+    "drop_rate": 0.1  
+  },
+  "trainer": {
+    "num_epochs": 50,
+    "loss": "DiceLoss",
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "momentum": 0.99,
+    "weight_decay": 0.0005,
+    "lr_scheduler": "steplr",
+    "step_size": 5,
+    "gamma": 0.5
+  },
+  "logger": {
+    "splits": ["train", "valid"],
+    "metrics": ["loss", "iou", "dsc"]
+  }
+}
